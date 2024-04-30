@@ -47,8 +47,15 @@ const CorrMatrix = ({ data, onMatrixClick }) => {
                 .attr('x', d => d.x * gridSize)
                 .attr('y', d => d.y * gridSize)
                 .style('fill', d => colorScale(d.value))
-                .on('click', d => onMatrixClick(d)); // Add click event handler
+        
+                .on('click', (event, d) => {
+                
+                console.log("Click event on matrix cell with data:", { value: d.value, xKey: keys[d.x], yKey: keys[d.y] });
+                onMatrixClick({ value: d.value, xKey: keys[d.x], yKey: keys[d.y] });
+                });
 
+  
+                  
             svg.selectAll('.cell-text')
                 .data(matrix.flat())
                 .enter().append('text')

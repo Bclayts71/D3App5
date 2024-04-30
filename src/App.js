@@ -38,8 +38,12 @@ class App extends Component {
   }
 
   handleMatrixClick = (item) => {
-    this.setState({ selectedMatrixData: item });
+    this.setState({ selectedMatrixData: {
+      data: this.state.data,
+      ...item }});
+    console.log("Matrix cell clicked:", item);
   };
+  
 
   render() {
     return <div className="parent">
