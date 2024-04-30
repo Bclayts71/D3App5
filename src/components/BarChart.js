@@ -27,7 +27,7 @@ class BarChart extends Component {
 
 
 
-    const margin = { top: 20, right: 20, bottom: 50, left: 50 };
+    const margin = { top: 30, right: 30, bottom: 30, left: 30 };
     const width = 600 - margin.left - margin.right;
     const height = 400 - margin.top - margin.bottom;
 
@@ -44,6 +44,7 @@ class BarChart extends Component {
     svg.selectAll('.bar').remove();
     svg.selectAll('g').remove();
     svg.selectAll('.bar-label').remove();
+    svg.selectAll('text').remove();
     svg.selectAll('.x-axis').selectAll('*').remove();
     svg.selectAll('.y-axis').selectAll('*').remove();
     svg.selectAll('.bar')

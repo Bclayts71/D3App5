@@ -7,7 +7,7 @@ class ScatterPlot extends Component {
     this.d3Container = React.createRef();
     this.margin = { top: 40, right: 30, bottom: 50, left: 60 };
     this.width = 950 - this.margin.left - this.margin.right;
-    this.height = 400 - this.margin.top - this.margin.bottom;
+    this.height = 250 - this.margin.top - this.margin.bottom;
   }
 
   componentDidMount() {
@@ -87,7 +87,7 @@ class ScatterPlot extends Component {
 
   render() {
     return (
-      <svg width="1000" height="450" ref={this.d3Container}
+      <svg width="1000" height="250" ref={this.d3Container}
       style={{ border: "0.25px solid #D3D3D3" }}></svg>
     );
   }

@@ -25,8 +25,8 @@ const CorrMatrix = ({ data, onMatrixClick }) => {
         if (data && data.length > 0 && d3Container.current) {
             const { matrix, keys } = calculateCorrelationMatrix(data);
 
-            const margin = { top: 20, right: 130, bottom: 20, left: 90 };
-            const size = 400;
+            const margin = { top: 10, right: 150, bottom: 15, left: 130 };
+            const size = 200;
             const gridSize = Math.floor(size / keys.length);
 
             const svg = d3.select(d3Container.current)

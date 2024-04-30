@@ -66,7 +66,9 @@ class App extends Component {
           <CorrMatrix data={this.state.data} onMatrixClick={this.handleMatrixClick} />
         </div>
       </div>
-      <ScatterPlot data={this.state.selectedMatrixData} />
+      <div className="scatterPlot-container">
+        <ScatterPlot data={this.state.selectedMatrixData} />
+      </div>
     </div>;
   }
 }
