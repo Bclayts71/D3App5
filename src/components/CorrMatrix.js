@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { pearsonCorrelation } from "./utils";
 
-const CorrMatrix = ({ data }) => {
+const CorrMatrix = ({ data, onMatrixClick }) => {
     const d3Container = useRef(null);
 
     const calculateCorrelationMatrix = (data) => {
@@ -33,7 +33,7 @@ const CorrMatrix = ({ data }) => {
                 .attr("width", size + margin.left + margin.right)
                 .attr("height", size + margin.top + margin.bottom)
                 .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                .attr("transform", `translate(${margin.left},${margin.top})`);
 
             const colorScale = d3.scaleSequential(d3.interpolatePlasma)
                 .domain([0.5, 1]);
@@ -46,8 +46,9 @@ const CorrMatrix = ({ data }) => {
                 .attr('height', gridSize)
                 .attr('x', d => d.x * gridSize)
                 .attr('y', d => d.y * gridSize)
-                .style('fill', d => colorScale(d.value));
-                
+                .style('fill', d => colorScale(d.value))
+                .on('click', d => onMatrixClick(d)); // Add click event handler
+
             svg.selectAll('.cell-text')
                 .data(matrix.flat())
                 .enter().append('text')
@@ -57,7 +58,8 @@ const CorrMatrix = ({ data }) => {
                 .style('text-anchor', 'middle')
                 .style('alignment-baseline', 'central')
                 .style('font-size', 10)
-                .style('fill', d => Math.abs(d.value) > 0.7 ? 'black' : 'white');
+                .style('fill', d => Math.abs(d.value) > 0.7 ? 'black' : 'white')
+                .on('click', d => onMatrixClick(d)); // Add click event handler for texts too
 
             // Color Legend
             const legendHeight = keys.length * gridSize;
@@ -119,7 +121,7 @@ const CorrMatrix = ({ data }) => {
                 .attr('y', size + margin.top)
                 .style('text-anchor', 'middle');
         }
-    }, [data]); 
+    }, [data, onMatrixClick]); 
 
     return (
             <svg className="corr-matrix" ref={d3Container} />
