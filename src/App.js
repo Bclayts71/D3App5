@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./App.css"
-import Child1 from "./Child1";
-import Child2 from "./Child2";
+import BarChart from "./components/BarChart";
 import * as d3 from "d3";
 import tips from "./tips.csv"
+import CorrMatrix from "./components/CorrMatrix";
 
 class App extends Component {
   constructor(props) {
@@ -17,13 +17,13 @@ class App extends Component {
     var self = this
     d3.csv(tips, function(d){
       return{
+        total_bill: parseFloat(d.total_bill),
         tip:parseFloat(d.tip),
-        total_bill:parseFloat(d.total_bill),
+        size: parseInt(d.size),
         day:d.day,
         sex:d.sex,
         smoker:d.smoker,
         time:d.time,
-        size:parseInt(d.size)
       }
     }).then(function(csv_data){
       self.setState({data:csv_data})
@@ -49,12 +49,14 @@ class App extends Component {
           </select>
         </div>
       </div>
-      <div className="child1">
-        <Child1 data1={this.state}></Child1>
-      </div>
-
-      <div className="child2">
-        <Child2 data2={this.state.data}></Child2>
+      <div className="container">
+        <div className="bar-chart">
+          <BarChart data1={this.state}/>
+        </div>
+        <div className="corr-matrix-container">
+          <h3>Correlation Matrix</h3>
+          <CorrMatrix data={this.state.data} />
+        </div>
       </div>
     </div>;
   }

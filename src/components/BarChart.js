@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
 
-class Child1 extends Component {
+class BarChart extends Component {
   constructor(props) {
     super(props);
     this.state = { radioValue: 'sex' };
@@ -13,11 +13,9 @@ class Child1 extends Component {
     var selectedRadio = this.state.radioValue
 
     const dailyData = {};
-    let totLength = 0;
     for (let i = 0; i < data.length; i++) {
       if (!dailyData[data[i][selectedRadio]]) {
         dailyData[data[i][selectedRadio]] = { day: data[i][selectedRadio], value: 0, count: 0 };
-        totLength++;
       }
       dailyData[data[i][selectedRadio]].value += data[i][selectedDropdown];
       dailyData[data[i][selectedRadio]].count++;
@@ -117,4 +115,4 @@ class Child1 extends Component {
     );
   }
 }
-export default Child1
+export default BarChart
