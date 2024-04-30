@@ -59,7 +59,7 @@ const CorrMatrix = ({ data, onMatrixClick }) => {
                 .style('alignment-baseline', 'central')
                 .style('font-size', 10)
                 .style('fill', d => Math.abs(d.value) > 0.7 ? 'black' : 'white')
-                .on('click', d => onMatrixClick(d)); // Add click event handler for texts too
+                .on('click', d => onMatrixClick(d)); 
 
             // Color Legend
             const legendHeight = keys.length * gridSize;
